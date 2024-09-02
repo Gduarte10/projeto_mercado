@@ -50,7 +50,7 @@ def main():
                 print('Cliente não cadastrado!')
         elif opcao == 9:
             funcionario = pesquisa_funcionario()
-            impressao_dados(2)
+            impressao_dados(funcionario, 2)
         else:
             print('Opção inválida!')
 
