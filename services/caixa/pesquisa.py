@@ -12,10 +12,10 @@ def pesquisa():
    
     connection = conn()
 
-    sql = f'SELECT * FROM {TABLE_NAME} WHERE codigo = {codigo};'
+    sql = f'SELECT * FROM {TABLE_NAME} WHERE codigo = %s;'
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute(sql)
+            cursor.execute(sql, codigo)
             produto = cursor.fetchone()
     
     if produto:

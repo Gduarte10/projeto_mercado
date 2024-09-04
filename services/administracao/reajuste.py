@@ -8,11 +8,11 @@ def reajuste_produto():
     print('###### Reajuste de Produto ########')
     codigo = input('Digite o código do produto: ')
 
-    sql = f'SELECT * FROM {TABLE_NAME} WHERE codigo = {codigo};'
+    sql = f'SELECT * FROM {TABLE_NAME} WHERE codigo = %s;'
     connection = conn()
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute(sql)
+            cursor.execute(sql, codigo)
             produto = cursor.fetchone()
 
             perc = None
@@ -33,9 +33,9 @@ def reajuste_produto():
                 produto.preco = preco_reajustado
             
                 # Atualizo o preço
-                sql = f'UPDATE {TABLE_NAME} SET preco = {produto.preco} WHERE codigo = {codigo};'
+                sql = f'UPDATE {TABLE_NAME} SET preco = {produto.preco} WHERE codigo = %s;'
                 with connection.cursor() as cursor:
-                    cursor.execute(sql)
+                    cursor.execute(sql, codigo)
                 connection.commit()   
                 impressao(produto)
             else:

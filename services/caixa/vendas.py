@@ -8,11 +8,11 @@ def venda_produto():
     print('###### Venda de Produto ########')
     codigo = input('Digite o código do produto: ')
 
-    sql = f'SELECT * FROM {TABLE_NAME} WHERE codigo = {codigo};'
+    sql = f'SELECT * FROM {TABLE_NAME} WHERE codigo = %s;'
     connection = conn()
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute(sql)
+            cursor.execute(sql, codigo)
             produto = cursor.fetchone()
 
         perc = None
@@ -41,9 +41,9 @@ def venda_produto():
                 print(f'Total: {valor_desconto * quant}')  
                 print('')
                 # Atualizo o estoque
-                sql = f'UPDATE {TABLE_NAME} SET quantidade = quantidade - {quant} WHERE codigo = {codigo};'
+                sql = f'UPDATE {TABLE_NAME} SET quantidade = quantidade - {quant} WHERE codigo = %s;'
                 with connection.cursor() as cursor:
-                    cursor.execute(sql)
+                    cursor.execute(sql, codigo)
                 connection.commit()
         else:
             print('Produto não encontrado!')
