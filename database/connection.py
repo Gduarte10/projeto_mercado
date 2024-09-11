@@ -13,7 +13,7 @@ def conn():
             user=os.getenv('MYSQL_USER'),
             password=os.getenv('MYSQL_PASSWORD'),
             database=os.getenv('MYSQL_DATABASE'),
-            port=int(os.getenv('PORT')),
+            # port=int(os.getenv('PORT')),
             charset='utf8mb4',
             cursorclass=CURRENT_CURSOR,
         )
