@@ -8,10 +8,10 @@ def pesquisa_cliente():
     cpf = input('Digite o cpf do cliente: ')
     connection = conn()
 
-    sql = f'SELECT * FROM {TABLE_NAME} c JOIN pessoa p ON p.id = c.idpessoa WHERE p.cpf = {cpf};'
+    sql = f'SELECT * FROM {TABLE_NAME} c JOIN pessoa p ON p.id = c.idpessoa WHERE p.cpf = %s;'
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute(sql)
+            cursor.execute(sql, cpf)
             dados = cursor.fetchone()
     
     if dados:

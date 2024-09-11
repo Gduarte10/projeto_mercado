@@ -11,10 +11,12 @@ def impressao_dados(dados, op):
             print(f'Ativo')
         else:
             print(f'Inativo')
+        print('')
     elif op == 2:
         print(f'Matricula: {dados.matricula}')
         print(f'Função: {dados.funcao}')
         print(f'Salário: {dados.salario}')
+        print('')
     else:
-        print('Opção inválida!')
+        print('Opção inválida!/n')
     
